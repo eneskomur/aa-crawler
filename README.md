@@ -1,12 +1,5 @@
 # Anadolu Ajansi News Crawler - Anadolu Ajansı Haber Robotu
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
-
 [EN] This package is created for crawling news from Anadolu Ajansi. You have to be subscribed to AA and obtain user credentials for being able to use this package.
 
 [TR] Bu paket AA abonelerinin kullanıcı bilgileriyle haberleri taramaları için oluşturulmuştur. Aşağıdaki şekilde kullandığınızda son eklenen haberlerden istediğiniz adette haberi dizi olarak alabilirsiniz. Paketi kullanmak için AA abonesi olmalı ve kullanıcı bilgilerine sahip olmalısınız.
@@ -20,13 +13,13 @@
 Via Composer
 
 ``` bash
-$ composer require bilginpro/agency-aa
+$ composer require eneskomur/aa-crawler
 ```
 
 ## Usage
 
 ``` php
-$crawler = new \BilginPro\Agency\Aa\Crawler([
+$crawler = new \eneskomur\Agency\Aa\Crawler([
     'user_name' => 'your-username',
     'password' => 'your-password'
 ]);
@@ -46,7 +39,8 @@ Calling `$crawler->crawl()` will return an array like this:
 		"created_at": "31.08.2017 15:56:12",
 		"category": "Genel",
 		"city": "Istanbul",
-		"images": ["http:\/\/path\/to\/news1\/image1", "http:\/\/path\/to\/news1\/image2"]
+		"images": ["http:\/\/path\/to\/news1\/image1", "http:\/\/path\/to\/news1\/image2"],
+                "videos": ["http:\/\/path\/to\/news1\/video1", "http:\/\/path\/to\/news1\/video2"]
 	},
 	{
 		"code": "aa:text:20170831:12935899",
@@ -56,7 +50,8 @@ Calling `$crawler->crawl()` will return an array like this:
 		"created_at": "31.08.2017 15:56:12",
 		"category": "Genel",
 		"city": "Ankara",
-		"images": ["http:\/\/path\/to\/news2\/image1", "http:\/\/path\/to\/news2\/image2"]
+		"images": ["http:\/\/path\/to\/news2\/image1", "http:\/\/path\/to\/news2\/image2"],
+                "videos": ["http:\/\/path\/to\/news2\/video1", "http:\/\/path\/to\/news2\/video2"]
 	}
 ]
 ```
@@ -76,30 +71,20 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email yavuz@bilgin.pro instead of using the issue tracker.
+If you discover any security related issues, please email eneskomur@gmail.com instead of using the issue tracker.
 
 ## Credits
 
 - [Yavuz Selim Bilgin][link-ysb]
 - [Murat Paksoy][link-mp]
+- [Enes Kömür][link-ek]
 - [All Contributors][link-contributors]
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/bilginpro/agency-aa.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/bilginpro/agency-aa/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/bilginpro/agency-aa.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/bilginpro/agency-aa.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/bilginpro/agency-aa.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/bilginpro/agency-aa
-[link-travis]: https://travis-ci.org/bilginpro/agency-aa
-[link-scrutinizer]: https://scrutinizer-ci.com/g/bilginpro/agency-aa/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/bilginpro/agency-aa
-[link-downloads]: https://packagist.org/packages/bilginpro/agency-aa
 [link-ysb]: https://github.com/ysb
 [link-mp]: https://github.com/slavesoul
+[link-ek]: https://github.com/eneskomur
 [link-contributors]: ../../contributors
