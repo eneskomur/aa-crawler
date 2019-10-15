@@ -103,10 +103,19 @@ class Crawler
                 ->xpath('//n:contentMeta/n:located[@type="cptype:city"]/n:name[@xml:lang="tr"]')[0];
         }
         $news->images = [];
-        if (isset($xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[0]['residref'])) {
-            $picture_id = (string)$xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[0]['residref'];
-            $news->images[] = $this->getDocumentLink($picture_id, 'print');
-        }
+		for($i=0;$i<20;$i++){
+			if (isset($xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[$i]['residref'])) {
+				$picture_id = (string)$xml->xpath('//n:newsItem/n:itemMeta/n:link[@rel="irel:seeAlso"]')[$i]['residref'];
+				if(strpos($picture_id, 'picture')){
+					$news->images[] = $this->getDocumentLink($picture_id, 'print');
+					$pic = $this->fetchUrl($this->getDocumentLink($picture_id, 'print'), 'GET', ['auth' => $this->auth]);
+					file_put_contents('img/'.rand(1000, 9999).".jpg", $pic);
+				}
+				elseif(strpos($picture_id, 'video')){
+					$news->videos[] = $this->getDocumentLink($picture_id, 'web');
+				}
+			}
+		}
         return $news;
     }
 
